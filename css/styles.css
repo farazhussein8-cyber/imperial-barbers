@@ -351,6 +351,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
    tidy pair of boxes */
 .hero__figure {
   position: relative;
+  /* tie the photo to the height available, so a wide window cannot grow it
+     until the rating bar drops off the fold; margin-left keeps it on the
+     right edge once capped */
+  max-width: min(620px, 62vh);
+  margin-left: auto;
   margin-right: calc(var(--gutter) * -1);
   align-self: end;
   transform: translateY(clamp(10px, 2vw, 34px));
