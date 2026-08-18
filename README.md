@@ -25,7 +25,7 @@ the shapes and nothing else needs changing:
 
 | File                   | Shape          | Used for                        |
 | ---------------------- | -------------- | ------------------------------- |
-| `shop-wide.jpg`        | landscape 16:9 | hero background + gallery       |
+| `shop-wide.jpg`        | landscape 16:9 | gallery                         |
 | `shop-wide-1100.jpg`   | landscape 16:9 | hero at mid widths (generated)  |
 | `shop-wide-1700.jpg`   | landscape 16:9 | hero at desktop (generated)     |
 | `shop-mirrors.jpg`     | landscape 4:3  | "Room to sit back" + gallery    |
@@ -37,6 +37,8 @@ the shapes and nothing else needs changing:
 | `shop-chairs.jpg`      | portrait 3:4   | gallery                         |
 | `shop-chairs-764.jpg`  | portrait 3:4   | the same, on 2x screens (gen.)  |
 | `logo-mark.png`        | square, circle | header, footer                  |
+| `logo-hero.png`        | square, circle | the hero mark (720px)           |
+| `logo-hero-480.png`    | square, circle | the same, smaller screens       |
 
 If a replacement has a noticeably different shape, update the matching
 `style="--ar:…"` on its gallery `<figure>` in `index.html` — that number is just
@@ -65,6 +67,16 @@ screens pull the bigger file. That makes the edges hold together instead of goin
 This keeps edges from going mushy when the browser stretches a small file, but
 it cannot invent detail that was never captured. Replacing each original and
 regenerating the variants is the only real fix.
+
+## The hero
+
+The hero is the logo on a dark ground with a warm radial glow behind it, not
+a photo. It is the same artwork as `logo-mark.png`, regenerated larger from
+the original so it stays crisp at 300px.
+
+To put a photo back, drop an `<img>` or `<picture>` into `.hero` as a first
+child, give it `position:absolute; inset:0; object-fit:cover`, and remove
+`text-align:center` from `.hero` if you want the copy left-aligned again.
 
 ## Booking
 

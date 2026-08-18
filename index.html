@@ -58,31 +58,19 @@
 
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="heroTitle">
-    <div class="hero__media">
-      <picture>
-        <!-- a landscape frame can only show a sliver of itself on a tall
-             phone, so narrow screens get the portrait shot instead -->
-        <source media="(max-width: 760px)"
-                srcset="images/shop-chairs.jpg 382w,
-                        images/shop-chairs-764.jpg 764w"
-                sizes="100vw"
-                width="764" height="1020">
-        <img src="images/shop-wide-1100.jpg"
-             srcset="images/shop-wide.jpg 680w,
-                     images/shop-wide-1100.jpg 1100w,
-                     images/shop-wide-1700.jpg 1700w"
-             sizes="100vw"
-             alt="Inside Imperial Barbers in Papatoetoe: black leather chairs along a mirrored wall"
-             width="1700" height="958" fetchpriority="high" decoding="async">
-      </picture>
-    </div>
+    <span class="hero__glow" aria-hidden="true"></span>
 
     <div class="shell hero__inner">
-      <p class="eyebrow eyebrow--onDark" data-reveal>Papatoetoe &middot; Auckland</p>
-      <h1 class="hero__title" id="heroTitle" data-reveal data-reveal-delay="1">Wear your best cut.</h1>
-      <p class="hero__lede" data-reveal data-reveal-delay="2">Precision fades, timeless cuts and clean grooming&mdash;crafted by local barbers who take the details personally.</p>
+      <img class="hero__mark" src="images/logo-hero.png"
+           srcset="images/logo-hero-480.png 480w, images/logo-hero.png 720w"
+           sizes="(max-width: 760px) 62vw, 340px"
+           alt="Imperial Barbers, style on us"
+           width="720" height="720" fetchpriority="high" decoding="async" data-reveal>
+      <p class="eyebrow eyebrow--onDark" data-reveal data-reveal-delay="1">Papatoetoe &middot; Auckland</p>
+      <h1 class="hero__title" id="heroTitle" data-reveal data-reveal-delay="2">Wear your best cut.</h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="3">Precision fades, timeless cuts and clean grooming&mdash;crafted by local barbers who take the details personally.</p>
 
-      <div class="hero__actions" data-reveal data-reveal-delay="3">
+      <div class="hero__actions" data-reveal data-reveal-delay="4">
         <a class="btn btn--brass" href="tel:+64222444473">Call to Book &middot; 022 244 4473</a>
         <a class="btn btn--ghost" href="https://www.google.com/maps/dir/?api=1&amp;destination=264+Great+South+Road%2C+Papatoetoe%2C+Auckland+2025%2C+New+Zealand" target="_blank" rel="noopener">Get Directions</a>
       </div>
