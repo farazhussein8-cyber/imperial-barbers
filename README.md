@@ -26,6 +26,8 @@ the shapes and nothing else needs changing:
 | File                   | Shape          | Used for                        |
 | ---------------------- | -------------- | ------------------------------- |
 | `shop-wide.jpg`        | landscape 16:9 | hero background + gallery       |
+| `shop-wide-1100.jpg`   | landscape 16:9 | hero at mid widths (generated)  |
+| `shop-wide-1700.jpg`   | landscape 16:9 | hero at desktop (generated)     |
 | `shop-mirrors.jpg`     | landscape 4:3  | "Room to sit back" + gallery    |
 | `shop-interior.jpg`    | landscape 16:9 | gallery                         |
 | `shop-reception.jpg`   | portrait 3:4   | Visit section + gallery         |
@@ -49,6 +51,15 @@ places, so change all three together:
 Today's row is highlighted automatically. The day is read off Auckland's clock
 rather than the visitor's, so someone browsing from overseas still sees the
 shop's day marked.
+
+### The two generated hero sizes
+
+`shop-wide-1100.jpg` and `shop-wide-1700.jpg` are upsampled from the 680px
+original with bicubic resampling and an unsharp mask, then wired up as a
+`srcset` on the hero. That makes the edges hold together instead of going
+mushy when the browser stretches a 680px file across a desktop screen, but it
+cannot invent detail that was never captured. Replacing `shop-wide.jpg` with
+the camera original and regenerating these two is the only real fix.
 
 ## Booking
 
