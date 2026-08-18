@@ -34,7 +34,8 @@ the shapes and nothing else needs changing:
 | `shop-interior-1360.jpg`| landscape 16:9| the same, on 2x screens (gen.)  |
 | `shop-reception.jpg`   | portrait 3:4   | Visit section + gallery         |
 | `shop-reception-764.jpg`| portrait 3:4  | the same, on 2x screens (gen.)  |
-| `shop-chairs.jpg`      | portrait 3:4   | gallery                         |
+| `shop-chairs.jpg`      | portrait 3:4   | hero photo + gallery            |
+| `shop-chairs-1600.jpg` | portrait 3:4   | hero on 2x screens (generated)  |
 | `shop-chairs-764.jpg`  | portrait 3:4   | the same, on 2x screens (gen.)  |
 | `logo-mark.png`        | square, circle | header, footer                  |
 | `logo-hero.png`        | square, circle | the hero mark (720px)           |
