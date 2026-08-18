@@ -59,13 +59,22 @@
   <!-- ============ HERO ============ -->
   <section class="hero" aria-labelledby="heroTitle">
     <div class="hero__media">
-      <img src="images/shop-wide-1100.jpg"
-           srcset="images/shop-wide.jpg 680w,
-                   images/shop-wide-1100.jpg 1100w,
-                   images/shop-wide-1700.jpg 1700w"
-           sizes="100vw"
-           alt="The main floor at Imperial Barbers, with barber chairs along a mirrored wall and a pool table in the foreground"
-           width="1700" height="958" fetchpriority="high" decoding="async">
+      <picture>
+        <!-- a landscape frame can only show a sliver of itself on a tall
+             phone, so narrow screens get the portrait shot instead -->
+        <source media="(max-width: 760px)"
+                srcset="images/shop-chairs.jpg 382w,
+                        images/shop-chairs-764.jpg 764w"
+                sizes="100vw"
+                width="764" height="1020">
+        <img src="images/shop-wide-1100.jpg"
+             srcset="images/shop-wide.jpg 680w,
+                     images/shop-wide-1100.jpg 1100w,
+                     images/shop-wide-1700.jpg 1700w"
+             sizes="100vw"
+             alt="Inside Imperial Barbers in Papatoetoe: black leather chairs along a mirrored wall"
+             width="1700" height="958" fetchpriority="high" decoding="async">
+      </picture>
     </div>
 
     <div class="shell hero__inner">
