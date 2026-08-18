@@ -50,19 +50,42 @@ Today's row is highlighted automatically. The day is read off Auckland's clock
 rather than the visitor's, so someone browsing from overseas still sees the
 shop's day marked.
 
+## Booking
+
+There is no online booking system wired up. Every "Call to Book" button and
+every row of the services board dials `tel:+64222444473`, and the copy says
+call or walk in rather than book online.
+
+An earlier version pointed at `imperialbarbers.setmore.com`. That account is
+not this shop's — it carries no address and its timezone is set to
+America/New_York — so it was removed to stop sending customers elsewhere.
+
+To wire up a real booking system, replace `tel:+64222444473` with the booking
+URL on these elements in `index.html`, and change the labels back from "Call
+to Book" to "Book":
+
+- `.nav-book` and `.header-book` in the header
+- the first `.btn--brass` in the hero
+- all 14 `.board__row a` links, whose `.board__cue` reads "Call"
+- the `.btn--brass` in the Visit section
+- `.mobile-cta__btn--book` in the sticky mobile bar
+- the footer nav link
+
+Also revisit the two meta descriptions in `<head>` and the three lines of
+prose that currently say to call: the services note, the Visit note, and the
+second paragraph of "Room to sit back".
+
 ## Things deliberately left out
 
-No prices anywhere on the page, since those were not supplied. Pricing is
-handled on the Setmore booking page.
+No prices anywhere on the page, since those were not supplied.
 
 ## Links used
 
-- Booking: <https://imperialbarbers.setmore.com>
 - Instagram: <https://www.instagram.com/imperialbarbersnz/>
 - Phone: `tel:+64222444473` (022 244 4473)
 - Email: `imperialstylesnz@gmail.com`
 - Directions: Google Maps, destination 264 Great South Road, Papatoetoe
 
-To change any of these, search `index.html` for the value — the booking URL
-appears on every service row as well as the header, hero, Visit section and
-footer.
+To change any of these, search `index.html` for the value — the phone number
+appears on every service row as well as the header, hero, Visit section,
+footer and the sticky mobile bar.
