@@ -197,6 +197,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .link-arrow svg { transition: transform .3s var(--ease); }
 .link-arrow:hover { color: var(--brass-lt); border-bottom-color: var(--brass-lt); }
 .link-arrow:hover svg { transform: translateX(5px); }
+.link-arrow--ink { color: var(--brass-ink); border-bottom-color: var(--brass-line-lt); }
+.link-arrow--ink:hover { color: var(--ink); border-bottom-color: var(--ink); }
 .link-arrow--sm { letter-spacing: .1em; border-bottom-color: transparent; }
 .link-arrow--sm:hover svg { transform: none; }
 
@@ -297,11 +299,10 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   flex-direction: column;
   justify-content: flex-start;
   min-height: clamp(560px, 90vh, 900px);
-  padding-top: 100px;
+  padding-top: 96px;
   background: var(--espresso-deep);
   overflow: hidden;
   isolation: isolate;
-  text-align: center;
 }
 
 /* warm light pooling behind the mark, the way the shop pendants do */
@@ -311,8 +312,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   z-index: -2;
   pointer-events: none;
   background:
-    radial-gradient(58% 52% at 50% 38%, rgba(198, 154, 112, .17), transparent 70%),
-    radial-gradient(120% 90% at 50% 120%, rgba(59, 36, 23, .55), transparent 62%);
+    radial-gradient(48% 46% at 26% 34%, rgba(198, 154, 112, .16), transparent 72%),
+    radial-gradient(120% 90% at 40% 120%, rgba(59, 36, 23, .5), transparent 64%);
 }
 
 /* fine grain keeps the flat ground from looking like a slab */
@@ -327,30 +328,55 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3'/%3E%3C/filter%3E%3Crect width='180' height='180' filter='url(%23n)' opacity='.42'/%3E%3C/svg%3E");
 }
 
-.hero__inner {
+.hero__grid {
   position: relative;
-  display: flex;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: minmax(0, 1.06fr) minmax(0, .82fr);
+  gap: clamp(30px, 5vw, 70px);
   align-items: center;
-  margin-block: auto;   /* centres the mark while the fascia stays pinned */
-  padding-bottom: clamp(34px, 4.2vw, 60px);
-  max-width: 1220px;
+  margin-block: auto;
+  padding-bottom: clamp(30px, 3.6vw, 52px);
 }
+
+.hero__copy { max-width: 40rem; }
 
 .hero__mark {
-  width: clamp(158px, 20vw, 236px);
+  width: clamp(104px, 11vw, 132px);
   height: auto;
-  margin-bottom: clamp(20px, 2.4vw, 30px);
-  filter: drop-shadow(0 24px 60px rgba(0, 0, 0, .55));
+  margin-bottom: clamp(20px, 2.2vw, 28px);
+  filter: drop-shadow(0 18px 44px rgba(0, 0, 0, .55));
 }
 
-.hero .eyebrow { justify-content: center; }
-.hero .eyebrow::before {
+/* the photo breaks the right edge of the shell so the hero is not a
+   tidy pair of boxes */
+.hero__figure {
+  position: relative;
+  margin-right: calc(var(--gutter) * -1);
+  align-self: end;
+  transform: translateY(clamp(10px, 2vw, 34px));
+}
+.hero__figure img {
+  width: 100%;
+  height: auto;            /* aspect-ratio only applies when height is auto */
+  aspect-ratio: 3 / 3.5;
+  object-fit: cover;
+  object-position: 42% 50%;
+  filter: saturate(.82) brightness(.9);
+}
+/* once there is room outside the shell, run the photo to the window edge */
+@media (min-width: 1332px) {
+  .hero__figure { margin-right: calc((var(--shell) / 2) - 50vw - var(--gutter)); }
+}
+
+.hero__figure::after {
   content: "";
-  flex: 0 0 46px;
-  height: 1px;
-  background: currentColor;
-  opacity: .5;
+  position: absolute;
+  inset: auto auto -14px -14px;
+  width: 46%;
+  height: 42%;
+  border-left: 1px solid var(--brass-line);
+  border-bottom: 1px solid var(--brass-line);
+  pointer-events: none;
 }
 
 .hero__title {
@@ -538,6 +564,50 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .board__row a:focus-visible .board__cue { opacity: 1; transform: translateX(0); }
 
 /* =====================================================================
+   WHY LOCALS CHOOSE US
+   ===================================================================== */
+.reasons { background: var(--espresso); }
+.reasons::before {
+  content: "";
+  position: absolute;
+  inset: 0 0 auto 0;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, var(--brass-line) 22%, var(--brass-line) 78%, transparent);
+}
+
+.reasons__list {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  column-gap: clamp(32px, 6vw, 88px);
+  border-top: 1px solid var(--brass-line);
+}
+/* the first reason takes the full width, so the block does not read as a
+   tidy card grid */
+.reason:first-child { grid-column: 1 / -1; }
+.reason:first-child .reason__name { font-size: clamp(1.5rem, 2.6vw, 2rem); }
+.reason:first-child .reason__note { max-width: 54ch; font-size: 1.04rem; }
+
+.reason {
+  padding-block: clamp(22px, 2.6vw, 32px);
+  border-bottom: 1px solid var(--brass-line);
+}
+.reason__name {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: 1.3rem;
+  line-height: 1.2;
+  color: var(--ivory);
+  margin-bottom: 8px;
+}
+.reason__note {
+  color: var(--stone);
+  font-size: .98rem;
+  line-height: 1.7;
+  max-width: 44ch;
+}
+
+/* =====================================================================
    THE SHOP
    ===================================================================== */
 .shop__grid {
@@ -558,44 +628,28 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 .shop__figure::after {
   content: "";
   position: absolute;
-  inset: 16px -16px -16px 16px;
-  border: 1px solid var(--brass-line-lt);
+  inset: 16px -16px 44px 16px;
+  border: 1px solid var(--brass-line);
+  pointer-events: none;
+}
+.shop { background: var(--espresso-2); }
+.shop__figure figcaption,
+.plate-img figcaption {
+  margin-top: 12px;
+  font-family: var(--font-util);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .16em;
+  text-transform: uppercase;
+  color: var(--brass);
 }
 .shop__copy p {
-  color: var(--ink-soft);
+  color: var(--stone);
   font-size: 1.03rem;
   line-height: 1.75;
 }
 .shop__copy p + p { margin-top: 18px; }
 .shop__copy .h-display { margin-bottom: 22px; }
-
-.marks {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 26px;
-  margin-top: 32px;
-  padding-top: 26px;
-  border-top: 1px solid var(--brass-line-lt);
-}
-.marks li {
-  display: flex;
-  align-items: center;
-  gap: 10px;
-  font-family: var(--font-util);
-  font-size: .8rem;
-  font-weight: 600;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--brass-ink);
-}
-.marks li::before {
-  content: "";
-  width: 5px;
-  height: 5px;
-  background: currentColor;
-  transform: rotate(45deg);
-  flex: none;
-}
 
 /* =====================================================================
    QUOTE
@@ -656,28 +710,79 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 /* =====================================================================
    GALLERY — justified rows, no crops fought against
    ===================================================================== */
-.gallery { background: var(--espresso-2); }
-
-.frames { display: flex; flex-direction: column; gap: clamp(12px, 1.4vw, 18px); }
-.frames__row { display: flex; gap: clamp(12px, 1.4vw, 18px); }
-
-.frame {
-  flex: var(--ar) 1 0;
-  min-width: 0;
-  overflow: hidden;
-  background: var(--espresso-3);
+/* staggered plates rather than an even grid */
+.plates {
+  display: grid;
+  grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: clamp(18px, 2.6vw, 38px);
+  row-gap: clamp(28px, 4vw, 56px);
 }
-.frames__row:first-child { height: clamp(240px, 30vw, 430px); }
-.frames__row:last-child  { height: clamp(180px, 21vw, 300px); }
-
-.frame img {
+.plate-img { min-width: 0; }
+.plate-img img {
   width: 100%;
-  height: 100%;
+  height: auto;
   object-fit: cover;
-  transition: transform .8s var(--ease), filter .5s var(--ease);
-  filter: saturate(.88);
+  transition: transform .8s var(--ease);
 }
-.frame:hover img { transform: scale(1.045); filter: saturate(1); }
+.plate-img:hover img { transform: scale(1.02); }
+.plate-img figcaption { color: var(--brass-ink); }
+
+.plate-img--a { grid-column: 1 / span 7; }
+.plate-img--b { grid-column: 9 / span 4; align-self: end; }
+.plate-img--c { grid-column: 2 / span 3; }
+.plate-img--d { grid-column: 6 / span 7; margin-top: clamp(28px, 5vw, 76px); }
+
+.plate-img--a img { aspect-ratio: 16 / 9; }
+.plate-img--b img { aspect-ratio: 3 / 4; }
+.plate-img--c img { aspect-ratio: 3 / 4; }
+.plate-img--d img { aspect-ratio: 16 / 9; }
+
+/* =====================================================================
+   REVIEWS
+   ===================================================================== */
+.reviews { background: var(--espresso); }
+.reviews__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.15fr) minmax(0, .7fr);
+  gap: clamp(36px, 6vw, 84px);
+  align-items: center;
+}
+.reviews__note {
+  margin-top: 20px;
+  max-width: 48ch;
+  color: var(--stone);
+  font-size: 1.03rem;
+  line-height: 1.75;
+}
+.reviews__cta { margin-top: 32px; }
+
+.score {
+  border: 1px solid var(--brass-line);
+  padding: clamp(28px, 3.4vw, 44px) clamp(22px, 3vw, 40px);
+  text-align: center;
+  background:
+    radial-gradient(80% 70% at 50% 0%, rgba(198, 154, 112, .1), transparent 70%);
+}
+.score__value {
+  font-family: var(--font-display);
+  font-optical-sizing: auto;
+  font-weight: 500;
+  font-size: clamp(4rem, 8vw, 6.4rem);
+  line-height: 1;
+  letter-spacing: -.03em;
+  color: var(--ivory);
+}
+.score__stars { margin-top: 14px; font-size: 1.3rem; }
+.score__meta {
+  margin-top: 12px;
+  font-family: var(--font-util);
+  font-size: .76rem;
+  font-weight: 600;
+  letter-spacing: .2em;
+  text-transform: uppercase;
+  color: var(--stone);
+}
+.score__meta--count { margin-top: 4px; color: var(--brass); }
 
 /* =====================================================================
    VISIT
@@ -891,6 +996,11 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
 /* Below this the two board columns are too narrow for a name and a line
    of description on the same row, so the board becomes a single list. */
+@media (max-width: 1080px) {
+  .reviews__grid { grid-template-columns: 1fr; gap: 34px; }
+  .score { max-width: 340px; }
+}
+
 @media (max-width: 1010px) {
   .board { grid-template-columns: 1fr; grid-template-rows: none; grid-auto-flow: row; }
   .board__row a { grid-template-columns: minmax(0, 1fr); padding: 17px 58px 17px 4px; }
@@ -991,8 +1101,21 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 
   body.nav-open { overflow: hidden; }
 
+  .hero__grid { grid-template-columns: 1fr; gap: 28px; align-items: start; }
+  .hero__figure { margin-right: 0; transform: none; max-width: 440px; }
+  .hero__figure img { aspect-ratio: 16 / 10; }
+  .hero__figure::after { display: none; }
+  .hero__copy { max-width: none; }
+
+  .reasons__list { grid-template-columns: 1fr; }
+  .reason:first-child .reason__note { max-width: none; }
+
+  .plates { grid-template-columns: 1fr; row-gap: clamp(26px, 6vw, 40px); }
+  .plate-img--a, .plate-img--b, .plate-img--c, .plate-img--d { grid-column: 1 / -1; margin-top: 0; }
+  .plate-img--b img, .plate-img--c img { aspect-ratio: 4 / 5; }
+
   .shop__grid { grid-template-columns: 1fr; gap: 40px; }
-  .shop__figure::after { inset: 12px -12px -12px 12px; }
+  .shop__figure::after { inset: 12px -12px 40px 12px; }
   /* photo, then the contact details, then the hours */
   .visit__grid { grid-template-columns: 1fr; gap: 40px; }
   .visit__aside { display: contents; }
@@ -1004,14 +1127,13 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
 }
 
 @media (max-width: 760px) {
-  .frames__row { flex-direction: column; height: auto; }
-  .frame { flex: none; aspect-ratio: var(--ar); }
-  .frames__row:first-child,
-  .frames__row:last-child { height: auto; }
-
-  .hero { min-height: 86vh; padding-top: 96px; }
+  .hero { min-height: 0; padding-top: 88px; }
   .hero__title { font-size: clamp(2.5rem, 11.8vw, 4rem); max-width: 11ch; }
   .hero__actions .btn { flex: 1 1 100%; }
+  .hero__mark { width: 96px; }
+  /* keeps "Papatoetoe - Great South Road" on one line with its rule */
+  .hero .eyebrow { font-size: .7rem; letter-spacing: .16em; gap: 10px; }
+  .hero .eyebrow::after { flex-basis: 34px; }
 
   .fascia__inner { flex-direction: column; align-items: flex-start; gap: 12px; padding-block: 16px; }
   .fascia__item + .fascia__item::before { display: none; }

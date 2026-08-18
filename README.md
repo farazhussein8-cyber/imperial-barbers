@@ -68,15 +68,24 @@ This keeps edges from going mushy when the browser stretches a small file, but
 it cannot invent detail that was never captured. Replacing each original and
 regenerating the variants is the only real fix.
 
+## Ratings and reviews
+
+The 4.5 rating and the count of 47 reviews are hard-coded in two places:
+the bar under the hero and the Reviews section. They are the real Google
+figures as at August 2026, but they do not update themselves—when the count
+moves, search `index.html` for `4.5` and `47` and change both.
+
+The Reviews section deliberately carries no quoted testimonials. Nothing on
+the page invents a customer, a barber, a price or a review.
+
 ## The hero
 
-The hero is the logo on a dark ground with a warm radial glow behind it, not
-a photo. It is the same artwork as `logo-mark.png`, regenerated larger from
-the original so it stays crisp at 300px.
+The hero is an off-centre split: copy on the left with a small logo mark
+above it, and `shop-chairs.jpg` on the right running past the shell to the
+window edge above 1332px. It stacks to a single column below 900px.
 
-To put a photo back, drop an `<img>` or `<picture>` into `.hero` as a first
-child, give it `position:absolute; inset:0; object-fit:cover`, and remove
-`text-align:center` from `.hero` if you want the copy left-aligned again.
+The logo there is `logo-hero.png`, the same artwork as `logo-mark.png`
+regenerated larger from the original.
 
 ## Booking
 
