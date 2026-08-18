@@ -16,8 +16,9 @@ whole folder to any host (Netlify, Cloudflare Pages, GitHub Pages, cPanel).
 
 ## Replacing the photos
 
-The photos currently in `images/` came from the versions pasted into chat, which
-are about 680px wide. They hold up on a phone and look fine on desktop behind the
+`shop-chairs` is the real photo at 1085x1450; its smaller sizes are true
+downscales of it. The other four came from versions pasted into chat and are
+about 680px wide. They hold up on a phone and look fine on desktop behind the
 dark hero wash, but the originals off the camera will look sharper.
 
 To swap them in, save the full-size files over these names — keep the names and
@@ -35,7 +36,7 @@ the shapes and nothing else needs changing:
 | `shop-reception.jpg`   | portrait 3:4   | Visit section + gallery         |
 | `shop-reception-764.jpg`| portrait 3:4  | the same, on 2x screens (gen.)  |
 | `shop-chairs.jpg`      | portrait 3:4   | hero photo + gallery            |
-| `shop-chairs-1600.jpg` | portrait 3:4   | hero on 2x screens (generated)  |
+| `shop-chairs-1085.jpg` | portrait 3:4   | hero + gallery at full size     |
 | `shop-chairs-764.jpg`  | portrait 3:4   | the same, on 2x screens (gen.)  |
 | `logo-mark.png`        | square, circle | header, footer                  |
 | `logo-hero.png`        | square, circle | the hero mark (720px)           |
