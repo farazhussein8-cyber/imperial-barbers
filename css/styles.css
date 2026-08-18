@@ -366,7 +366,8 @@ button { font: inherit; color: inherit; background: none; border: 0; cursor: poi
   aspect-ratio: 3 / 3.5;
   object-fit: cover;
   object-position: 42% 50%;
-  filter: saturate(.82) brightness(.9);
+  /* the shop is dim, so lift micro-contrast rather than flatten it */
+  filter: saturate(.86) brightness(.94) contrast(1.05);
 }
 /* once there is room outside the shell, run the photo to the window edge */
 @media (min-width: 1332px) {
