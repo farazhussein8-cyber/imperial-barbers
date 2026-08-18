@@ -29,9 +29,13 @@ the shapes and nothing else needs changing:
 | `shop-wide-1100.jpg`   | landscape 16:9 | hero at mid widths (generated)  |
 | `shop-wide-1700.jpg`   | landscape 16:9 | hero at desktop (generated)     |
 | `shop-mirrors.jpg`     | landscape 4:3  | "Room to sit back" + gallery    |
+| `shop-mirrors-1360.jpg`| landscape 4:3  | the same, on 2x screens (gen.)  |
 | `shop-interior.jpg`    | landscape 16:9 | gallery                         |
+| `shop-interior-1360.jpg`| landscape 16:9| the same, on 2x screens (gen.)  |
 | `shop-reception.jpg`   | portrait 3:4   | Visit section + gallery         |
+| `shop-reception-764.jpg`| portrait 3:4  | the same, on 2x screens (gen.)  |
 | `shop-chairs.jpg`      | portrait 3:4   | gallery                         |
+| `shop-chairs-764.jpg`  | portrait 3:4   | the same, on 2x screens (gen.)  |
 | `logo-mark.png`        | square, circle | header, footer                  |
 
 If a replacement has a noticeably different shape, update the matching
@@ -52,14 +56,15 @@ Today's row is highlighted automatically. The day is read off Auckland's clock
 rather than the visitor's, so someone browsing from overseas still sees the
 shop's day marked.
 
-### The two generated hero sizes
+### The generated 2x sizes
 
-`shop-wide-1100.jpg` and `shop-wide-1700.jpg` are upsampled from the 680px
-original with bicubic resampling and an unsharp mask, then wired up as a
-`srcset` on the hero. That makes the edges hold together instead of going
-mushy when the browser stretches a 680px file across a desktop screen, but it
-cannot invent detail that was never captured. Replacing `shop-wide.jpg` with
-the camera original and regenerating these two is the only real fix.
+Every file with a size in its name is upsampled from the small original with
+bicubic resampling and an unsharp mask, then offered through a `srcset`. A 1x
+screen still gets the small original wherever it is large enough; only 2x
+screens pull the bigger file. That makes the edges hold together instead of going
+This keeps edges from going mushy when the browser stretches a small file, but
+it cannot invent detail that was never captured. Replacing each original and
+regenerating the variants is the only real fix.
 
 ## Booking
 
