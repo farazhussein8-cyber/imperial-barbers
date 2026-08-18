@@ -75,8 +75,14 @@ the bar under the hero and the Reviews section. They are the real Google
 figures as at August 2026, but they do not update themselves—when the count
 moves, search `index.html` for `4.5` and `47` and change both.
 
-The Reviews section deliberately carries no quoted testimonials. Nothing on
-the page invents a customer, a barber, a price or a review.
+The six quotes in the Reviews section are real Google reviews, reproduced
+word for word including their original spelling. They were chosen from the
+positive ones; the shop also has one-star reviews, and the section links
+straight to the full unedited list rather than hiding that. Nothing on the
+page invents a customer, a barber, a price or a review.
+
+To change the quotes, edit the `.quote-card` figures in `index.html`. Keep
+them verbatim.
 
 ## The hero
 
