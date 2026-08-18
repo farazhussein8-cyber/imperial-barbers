@@ -1,672 +1,362 @@
 <!DOCTYPE html>
-<html lang="en-NZ">
+<html lang="en">
 <head>
-<meta charset="utf-8">
+<meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Crispy Cut — Barbershop in Papatoetoe, Auckland</title>
-<meta name="description" content="Crispy Cut barbershop, 18 Saint George Street, Papatoetoe. Fades, beard trims, kids' cuts and straight razor shaves. 5.0 from 62 Google reviews. Walk in or call 021 286 1854.">
-<meta name="theme-color" content="#121317">
-<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' fill='%23121317'/%3E%3Crect y='19' width='32' height='3' fill='%2312BEC0'/%3E%3Crect y='25' width='32' height='1' fill='%23EDE9E1'/%3E%3C/svg%3E">
+<title>Imperial Barbers — Barber Shop in Papatoetoe, Auckland</title>
+<meta name="description" content="Precision fades, timeless cuts and clean grooming in Papatoetoe, Auckland. Book online or walk in. 264 Great South Road.">
+<meta name="theme-color" content="#1E150F">
 
-<style>
-/* ── tokens ─────────────────────────────────────────────────────────── */
-:root{
-  /* the fade: ink at the top of the head, skin at the bottom */
-  --ink:      #121317;
-  --graphite: #23252B;
-  --ash:      #45433E;
-  --taupe:    #A2988A;
-  --talc:     #EDE9E1;
+<link rel="icon" type="image/png" href="images/favicon.png">
+<link rel="apple-touch-icon" href="images/logo-mark.png">
 
-  --barbicide:     #12BEC0;   /* the blue jar on every barber's station */
-  --barbicide-deep:#0A6F72;   /* same accent, legible on light ground */
+<meta property="og:title" content="Imperial Barbers — Papatoetoe, Auckland">
+<meta property="og:description" content="Precision fades, timeless cuts and clean grooming. Book online or walk in.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="images/shop-wide.jpg">
 
-  --muted-dark:  #9AA0A6;     /* secondary text on ink */
-  --muted-light: #5E5A53;     /* secondary text on talc */
-
-  --font-display: "Bahnschrift Condensed", "Bahnschrift", "Haettenschweiler",
-                  "Arial Narrow", "Helvetica Neue Condensed", Impact, sans-serif;
-  --font-body: "Segoe UI Variable Text", "Segoe UI", -apple-system,
-               BlinkMacSystemFont, Roboto, "Helvetica Neue", Arial, sans-serif;
-  --font-mono: "Cascadia Mono", Consolas, "SF Mono", ui-monospace,
-               "Roboto Mono", monospace;
-
-  --gutter: clamp(1.25rem, 5vw, 5rem);
-  --measure: 1320px;
-  --rule: 1px;
-}
-
-*,*::before,*::after{ box-sizing:border-box; }
-html{ -webkit-text-size-adjust:100%; scroll-behavior:smooth; }
-body{
-  margin:0;
-  background:var(--ink);
-  color:var(--talc);
-  font-family:var(--font-body);
-  font-size:clamp(1rem,0.95rem + 0.2vw,1.0625rem);
-  line-height:1.55;
-  -webkit-font-smoothing:antialiased;
-  overflow-x:hidden;
-}
-img{ max-width:100%; display:block; }
-a{ color:inherit; }
-
-/* ── shared primitives ──────────────────────────────────────────────── */
-.wrap{ max-width:var(--measure); margin-inline:auto; padding-inline:var(--gutter); }
-
-.band{ padding-block:clamp(4.5rem,10vw,9rem); }
-
-.display{
-  font-family:var(--font-display);
-  font-weight:700;
-  font-stretch:75%;
-  text-transform:uppercase;
-  line-height:0.86;
-  letter-spacing:-0.005em;
-  margin:0;
-}
-
-.eyebrow{
-  font-family:var(--font-mono);
-  font-size:0.72rem;
-  letter-spacing:0.22em;
-  text-transform:uppercase;
-  margin:0 0 1.5rem;
-  display:flex;
-  align-items:center;
-  gap:0.75rem;
-}
-.eyebrow::after{
-  content:"";
-  flex:1;
-  height:var(--rule);
-  background:currentColor;
-  opacity:0.28;
-}
-
-/* the line-up: a razor-sharp hairline, the thing a good barber is judged on */
-.lineup{
-  height:2px;
-  background:var(--barbicide);
-  border:0;
-  margin:0;
-}
-
-:where(a,button,summary):focus-visible{
-  outline:2px solid var(--barbicide);
-  outline-offset:4px;
-  border-radius:1px;
-}
-
-.skip{
-  position:absolute; left:-9999px; top:0;
-  background:var(--barbicide); color:var(--ink);
-  padding:0.75rem 1rem; z-index:99; font-weight:600;
-}
-.skip:focus{ left:0; }
-
-/* ── buttons ────────────────────────────────────────────────────────── */
-.btn{
-  display:inline-flex; align-items:center; gap:0.6rem;
-  font-family:var(--font-mono);
-  font-size:0.9rem;
-  letter-spacing:0.06em;
-  text-decoration:none;
-  padding:0.95rem 1.5rem;
-  border:var(--rule) solid currentColor;
-  transition:background 160ms ease, color 160ms ease, transform 160ms ease;
-}
-.btn--solid{
-  background:var(--barbicide);
-  border-color:var(--barbicide);
-  color:var(--ink);
-  font-weight:600;
-}
-.btn--solid:hover{ background:var(--talc); border-color:var(--talc); }
-.btn--ghost{ color:var(--talc); border-color:rgba(237,233,225,0.35); }
-.btn--ghost:hover{ border-color:var(--talc); background:rgba(237,233,225,0.07); }
-.btn:active{ transform:translateY(1px); }
-
-/* ── nav ────────────────────────────────────────────────────────────── */
-.nav{
-  display:flex; align-items:center; justify-content:space-between;
-  gap:1rem;
-  padding-block:1.4rem;
-}
-.nav__mark{
-  font-family:var(--font-display); font-weight:700; font-stretch:75%;
-  text-transform:uppercase; letter-spacing:0.04em;
-  font-size:1.15rem; text-decoration:none;
-}
-.nav__links{ display:flex; gap:clamp(1rem,2.5vw,2.25rem); align-items:center; }
-.nav__links a{
-  font-family:var(--font-mono); font-size:0.78rem;
-  letter-spacing:0.14em; text-transform:uppercase;
-  text-decoration:none; color:var(--muted-dark);
-  transition:color 140ms ease;
-}
-.nav__links a:hover{ color:var(--barbicide); }
-@media (max-width:640px){ .nav__links a:not(.nav__call){ display:none; } }
-.nav__call{ color:var(--talc) !important; }
-
-/* ── 1. hero — ink ──────────────────────────────────────────────────── */
-.hero{
-  background:var(--ink);
-  padding-bottom:clamp(2.5rem,5vw,4rem);
-}
-.hero__inner{
-  padding-top:clamp(3rem,9vw,7rem);
-}
-.hero__place{
-  font-family:var(--font-mono);
-  font-size:0.75rem; letter-spacing:0.24em; text-transform:uppercase;
-  color:var(--barbicide);
-  margin:0 0 clamp(1.5rem,4vw,2.5rem);
-}
-/* wordmark left, the facts you'd ring up to ask about on the right */
-.hero__lockup{
-  display:grid;
-  grid-template-columns:auto minmax(230px,auto);
-  justify-content:space-between;
-  gap:clamp(1.5rem,4vw,4rem);
-  align-items:end;
-}
-@media (max-width:900px){
-  .hero__lockup{ grid-template-columns:1fr; align-items:start; }
-}
-
-.hero__name{
-  font-size:clamp(4rem,18vw,17rem);
-  line-height:0.8;
-  letter-spacing:-0.015em;
-}
-.hero__name span{ display:block; }
-.hero__name .cut{ color:var(--talc); }
-
-.hero__stats{ margin:0 0 0.4rem; font-family:var(--font-mono); font-size:0.8rem; }
-.hero__stats div{
-  display:flex; justify-content:space-between; gap:1.25rem;
-  padding:0.6rem 0;
-  border-top:var(--rule) solid rgba(237,233,225,0.18);
-}
-.hero__stats dt{
-  color:var(--muted-dark);
-  letter-spacing:0.16em; text-transform:uppercase; font-size:0.68rem;
-  padding-top:0.08rem;
-}
-.hero__stats dd{ margin:0; text-align:right; color:var(--talc); }
-.hero__stats .star{ color:var(--barbicide); }
-
-/* live open/closed state, worked out from the hours table in NZ time */
-.dot{
-  display:inline-block; width:0.5em; height:0.5em;
-  border-radius:50%; margin-right:0.45em;
-  vertical-align:0.08em;
-  background:var(--barbicide);
-}
-.dot--shut{ background:var(--muted-dark); }
-
-/* the wordmark sits exactly on a line-up */
-.hero__rule{ margin-top:clamp(1.25rem,2.5vw,2rem); }
-
-.hero__foot{
-  display:flex; flex-wrap:wrap; gap:clamp(1.5rem,4vw,3.5rem);
-  justify-content:space-between; align-items:flex-end;
-  margin-top:clamp(1.75rem,4vw,2.75rem);
-}
-.hero__pitch{
-  max-width:34ch; margin:0;
-  font-size:clamp(1.05rem,1rem + 0.4vw,1.3rem);
-  color:var(--talc);
-}
-.hero__pitch b{ font-weight:600; }
-.hero__actions{ display:flex; flex-wrap:wrap; gap:0.75rem; }
-@media (max-width:520px){
-  .hero__actions{ display:grid; grid-template-columns:1fr; }
-  .hero__actions .btn{ justify-content:center; }
-}
-
-/* ── 2. sunday deal — ink ───────────────────────────────────────────── */
-.deal{ background:var(--ink); padding-bottom:clamp(3rem,7vw,5rem); }
-.deal__card{
-  border:2px solid var(--barbicide);
-  padding:clamp(1.5rem,3.5vw,2.5rem);
-  display:flex; flex-wrap:wrap; align-items:center;
-  gap:1rem clamp(1.5rem,4vw,3rem);
-}
-.deal__tag{
-  font-family:var(--font-mono); font-size:0.72rem;
-  letter-spacing:0.22em; text-transform:uppercase;
-  background:var(--barbicide); color:var(--ink);
-  padding:0.4rem 0.7rem; font-weight:600;
-  align-self:flex-start;
-}
-.deal__price{
-  font-family:var(--font-display); font-weight:700; font-stretch:75%;
-  text-transform:uppercase;
-  font-size:clamp(1.75rem,1.2rem + 2.6vw,3.25rem);
-  line-height:1; margin:0;
-}
-.deal__price em{ font-style:normal; color:var(--barbicide); }
-.deal__note{
-  margin:0; margin-left:auto;
-  font-family:var(--font-mono); font-size:0.78rem;
-  color:var(--muted-dark); max-width:26ch; line-height:1.7;
-}
-.deal__note a{ color:var(--barbicide); text-underline-offset:3px; }
-
-/* ── 3. services — ink fading into ash ──────────────────────────────── */
-.services{
-  background:linear-gradient(180deg,var(--ink) 0%,var(--graphite) 45%,var(--ash) 100%);
-}
-.services__head{
-  display:flex; flex-wrap:wrap; justify-content:space-between;
-  align-items:baseline; gap:1rem;
-  margin-bottom:clamp(2rem,4vw,3rem);
-}
-.services__title{ font-size:clamp(2.25rem,1.5rem + 3.5vw,4.5rem); }
-.services__aside{
-  margin:0; max-width:30ch;
-  font-family:var(--font-mono); font-size:0.8rem;
-  color:var(--muted-dark); line-height:1.8;
-}
-
-.list{ list-style:none; margin:0; padding:0; max-width:1060px; border-top:var(--rule) solid rgba(237,233,225,0.2); }
-.list__row{
-  display:grid;
-  grid-template-columns:minmax(0,1fr) minmax(0,1.25fr);
-  gap:0.25rem clamp(1rem,3vw,3rem);
-  align-items:baseline;
-  padding:clamp(0.85rem,1.6vw,1.25rem) 0;
-  border-bottom:var(--rule) solid rgba(237,233,225,0.2);
-  position:relative;
-  transition:padding-left 220ms cubic-bezier(.2,.7,.3,1);
-}
-.list__row::before{
-  content:"";
-  position:absolute; left:0; top:0; bottom:0;
-  width:3px; background:var(--barbicide);
-  transform:scaleY(0); transform-origin:bottom;
-  transition:transform 220ms cubic-bezier(.2,.7,.3,1);
-}
-.list__row:hover,.list__row:focus-within{ padding-left:1.25rem; }
-.list__row:hover::before,.list__row:focus-within::before{ transform:scaleY(1); }
-
-.list__name{
-  font-family:var(--font-display); font-weight:700; font-stretch:75%;
-  text-transform:uppercase;
-  font-size:clamp(1.4rem,1rem + 2vw,2.6rem);
-  line-height:1; letter-spacing:0.005em;
-}
-.list__note{ color:var(--muted-dark); font-size:0.95rem; }
-.list__row:hover .list__note,.list__row:focus-within .list__note{ color:var(--talc); }
-
-@media (max-width:640px){
-  .list__row{ grid-template-columns:1fr; }
-  .list__note{ font-size:0.9rem; }
-}
-
-/* ── 4. reviews — ash fading through taupe to talc ──────────────────── */
-/* the empty middle of this band is the fade itself; nothing sits in it */
-.reviews{
-  background:linear-gradient(180deg,var(--ash) 0%,var(--taupe) 46%,var(--talc) 88%,var(--talc) 100%);
-  padding-block:clamp(4rem,9vw,7rem) clamp(3rem,6vw,5rem);
-  text-align:center;
-}
-.reviews .eyebrow{ justify-content:center; color:var(--talc); }
-.reviews .eyebrow::after{ display:none; }
-.reviews__gap{ height:clamp(5rem,14vw,11rem); }
-.reviews__score{
-  font-size:clamp(7rem,30vw,20rem);
-  line-height:0.74;
-  color:var(--ink);
-  letter-spacing:-0.03em;
-}
-.reviews__count{
-  margin:clamp(1rem,2.5vw,1.75rem) 0 0;
-  font-family:var(--font-mono);
-  font-size:clamp(0.8rem,0.75rem + 0.3vw,0.95rem);
-  letter-spacing:0.14em; text-transform:uppercase;
-  color:var(--muted-light);
-}
-.reviews__link{
-  display:inline-block; margin-top:1.75rem;
-  font-family:var(--font-mono); font-size:0.82rem;
-  letter-spacing:0.1em; text-transform:uppercase;
-  color:var(--barbicide-deep);
-  text-decoration:none;
-  border-bottom:2px solid var(--barbicide);
-  padding-bottom:2px;
-}
-.reviews__link:hover{ color:var(--ink); }
-
-/* ── 5. find us — talc ──────────────────────────────────────────────── */
-.find{ background:var(--talc); color:var(--ink); }
-.find .eyebrow{ color:var(--muted-light); }
-.find__grid{
-  display:grid;
-  grid-template-columns:repeat(auto-fit,minmax(260px,1fr));
-  gap:clamp(2rem,5vw,4rem);
-  align-items:start;
-}
-.find__title{
-  font-size:clamp(2.25rem,1.5rem + 3.5vw,4.5rem);
-  margin-bottom:1.25rem;
-}
-.find__addr{
-  font-style:normal;
-  font-family:var(--font-mono);
-  font-size:clamp(0.95rem,0.9rem + 0.3vw,1.1rem);
-  line-height:1.9;
-  margin-bottom:1.75rem;
-}
-.find__addr a{ color:var(--ink); text-decoration-color:var(--barbicide); text-underline-offset:4px; }
-.find__addr a:hover{ color:var(--barbicide-deep); }
-.find .btn--solid:hover{ background:var(--ink); border-color:var(--ink); color:var(--talc); }
-.find .btn--ghost{ color:var(--ink); border-color:rgba(18,19,23,0.3); }
-.find .btn--ghost:hover{ border-color:var(--ink); background:rgba(18,19,23,0.05); }
-
-.hours{ margin:0; font-family:var(--font-mono); font-size:0.9rem; }
-.hours__row{
-  display:flex; justify-content:space-between; gap:1rem;
-  padding:0.55rem 0;
-  border-bottom:var(--rule) solid rgba(18,19,23,0.14);
-}
-.hours__row:first-child{ border-top:var(--rule) solid rgba(18,19,23,0.14); }
-.hours dt{ color:var(--muted-light); letter-spacing:0.1em; text-transform:uppercase; font-size:0.78rem; }
-.hours dd{ margin:0; }
-.hours__row.is-today{ box-shadow:inset 3px 0 0 var(--barbicide); padding-left:0.75rem; }
-.hours__row.is-today dt{ color:var(--ink); }
-.hours__row.is-today dd{ font-weight:600; }
-.hours__note{
-  margin:1rem 0 0; font-family:var(--font-body);
-  font-size:0.85rem; color:var(--muted-light);
-}
-
-/* ── footer ─────────────────────────────────────────────────────────── */
-.foot{
-  background:var(--talc); color:var(--muted-light);
-  padding-block:2rem 3rem;
-  font-family:var(--font-mono); font-size:0.75rem;
-  letter-spacing:0.08em; text-transform:uppercase;
-}
-.foot__inner{
-  border-top:var(--rule) solid rgba(18,19,23,0.16);
-  padding-top:1.5rem;
-  display:flex; flex-wrap:wrap; gap:1rem; justify-content:space-between;
-}
-.foot a{ color:var(--muted-light); text-decoration:none; }
-.foot a:hover{ color:var(--barbicide-deep); }
-
-/* ── sticky call bar (small screens) ────────────────────────────────── */
-.callbar{
-  position:fixed; inset:auto 0 0 0; z-index:50;
-  display:none;
-  align-items:center; justify-content:center; gap:0.6rem;
-  background:var(--barbicide); color:var(--ink);
-  padding:1rem; text-decoration:none;
-  font-family:var(--font-mono); font-weight:600;
-  letter-spacing:0.08em; font-size:0.9rem;
-}
-@media (max-width:720px){
-  .callbar{ display:flex; }
-  body{ padding-bottom:3.75rem; }
-}
-
-/* ── motion ─────────────────────────────────────────────────────────── */
-.rise{ opacity:0; transform:translateY(18px); }
-.rise.in{ opacity:1; transform:none; transition:opacity 620ms ease, transform 620ms cubic-bezier(.2,.7,.3,1); }
-.rise.in.d1{ transition-delay:70ms; }
-.rise.in.d2{ transition-delay:140ms; }
-.rise.in.d3{ transition-delay:210ms; }
-
-@keyframes clipUp{ from{ clip-path:inset(0 0 100% 0); } to{ clip-path:inset(0 0 -10% 0); } }
-@keyframes widen{ from{ transform:scaleX(0); } to{ transform:scaleX(1); } }
-.hero__name span{ animation:clipUp 900ms cubic-bezier(.2,.75,.25,1) both; }
-.hero__name span:nth-child(2){ animation-delay:120ms; }
-.hero__rule{ transform-origin:left; animation:widen 800ms cubic-bezier(.2,.75,.25,1) 320ms both; }
-
-@media (prefers-reduced-motion:reduce){
-  html{ scroll-behavior:auto; }
-  *,*::before,*::after{ animation:none !important; transition-duration:1ms !important; }
-  .rise{ opacity:1; transform:none; }
-}
-</style>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Archivo+Narrow:wght@500;600;700&family=Archivo:wght@400;500;600&family=Bodoni+Moda:opsz,wght@6..96,400;6..96,500;6..96,700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="css/styles.css">
+<script>document.documentElement.classList.add('js');</script>
 </head>
+<body id="top">
 
-<body>
-<a class="skip" href="#main">Skip to content</a>
+<a class="skip-link" href="#main">Skip to content</a>
 
-<!-- ══ 1. hero ═══════════════════════════════════════════════════════ -->
-<header class="hero">
-  <div class="wrap">
-    <nav class="nav" aria-label="Main">
-      <a class="nav__mark" href="#top">Crispy Cut</a>
-      <div class="nav__links">
-        <a href="#services">Services</a>
-        <a href="#reviews">Reviews</a>
-        <a href="#find">Find us</a>
-        <a class="nav__call" href="tel:+64212861854">021 286 1854</a>
-      </div>
+<!-- ============ HEADER ============ -->
+<header class="site-header" id="siteHeader">
+  <div class="shell header-inner">
+    <a class="brand" href="#top" aria-label="Imperial Barbers, back to top">
+      <img class="brand-mark" src="images/logo-mark.png" alt="" width="320" height="320">
+      <span class="brand-words">
+        <span class="brand-name">Imperial Barbers</span>
+        <span class="brand-tag">Style on us</span>
+      </span>
+    </a>
+
+    <nav class="site-nav" id="siteNav" aria-label="Primary">
+      <a href="#services">Services</a>
+      <a href="#shop">The Shop</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a class="nav-book" href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Now</a>
     </nav>
-  </div>
 
-  <div class="wrap hero__inner" id="top">
-    <p class="hero__place">Papatoetoe · Auckland</p>
+    <a class="btn btn--brass btn--sm header-book" href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Now</a>
 
-    <div class="hero__lockup">
-      <h1 class="display hero__name">
-        <span>Crispy</span><span class="cut">Cut</span>
-      </h1>
-
-      <dl class="hero__stats">
-        <div><dt>Rated</dt><dd><span class="star">★</span> 5.0 · 62 reviews</dd></div>
-        <div><dt>Today</dt><dd id="today">9 am – 6 pm</dd></div>
-        <div><dt>Where</dt><dd>18 Saint George St</dd></div>
-      </dl>
-    </div>
-    <hr class="lineup hero__rule">
-
-    <div class="hero__foot">
-      <p class="hero__pitch">
-        Barbershop on St George Street. Fades, beards, kids' cuts and
-        straight razor shaves. <b>Walk in, or call ahead.</b>
-      </p>
-      <div class="hero__actions">
-        <a class="btn btn--solid" href="tel:+64212861854">Call 021 286 1854</a>
-        <a class="btn btn--ghost" href="https://www.google.com/maps/search/?api=1&amp;query=Crispy+Cut+18+Saint+George+Street+Papatoetoe+Auckland" target="_blank" rel="noopener">Get directions</a>
-      </div>
-    </div>
-
+    <button class="nav-toggle" id="navToggle" type="button" aria-expanded="false" aria-controls="siteNav" aria-label="Open menu">
+      <span class="nav-toggle__bars" aria-hidden="true"><i></i><i></i><i></i></span>
+    </button>
   </div>
 </header>
 
+<div class="nav-scrim" id="navScrim" hidden></div>
+
 <main id="main">
 
-  <!-- ══ 2. sunday deal ══════════════════════════════════════════════ -->
-  <section class="deal" aria-labelledby="deal-title">
-    <div class="wrap">
-      <div class="deal__card rise">
-        <span class="deal__tag">Sunday deal</span>
-        <p class="deal__price" id="deal-title">$20 haircut <em>+ free wax</em></p>
-        <p class="deal__note">
-          Deals get posted on TikTok
-          <a href="https://www.tiktok.com/@crispy.cut2" target="_blank" rel="noopener">@crispy.cut2</a>.
-          Ask in store for what's running this week.
+  <!-- ============ HERO ============ -->
+  <section class="hero" aria-labelledby="heroTitle">
+    <div class="hero__media">
+      <img src="images/shop-wide.jpg" alt="The main floor at Imperial Barbers, with barber chairs along a mirrored wall and a pool table in the foreground" width="680" height="383" fetchpriority="high" decoding="async">
+    </div>
+
+    <div class="shell hero__inner">
+      <p class="eyebrow eyebrow--onDark" data-reveal>Papatoetoe &middot; Auckland</p>
+      <h1 class="hero__title" id="heroTitle" data-reveal data-reveal-delay="1">Wear your best cut.</h1>
+      <p class="hero__lede" data-reveal data-reveal-delay="2">Precision fades, timeless cuts and clean grooming&mdash;crafted by local barbers who take the details personally.</p>
+
+      <div class="hero__actions" data-reveal data-reveal-delay="3">
+        <a class="btn btn--brass" href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Your Chair</a>
+        <a class="btn btn--ghost" href="tel:+64222444473">Call 022 244 4473</a>
+      </div>
+    </div>
+
+    <div class="fascia">
+      <div class="shell fascia__inner">
+        <p class="fascia__item fascia__rating">
+          <span class="fascia__score">4.5</span>
+          <span class="stars" role="img" aria-label="Rated 4.5 out of 5 stars">
+            <span class="stars__base" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+            <span class="stars__fill" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+          </span>
+          <span class="fascia__label">47 Google reviews</span>
         </p>
+        <p class="fascia__item">264 Great South Road, Papatoetoe</p>
+        <p class="fascia__item">Open 7 days</p>
+        <p class="fascia__item">Walk-ins welcome</p>
       </div>
     </div>
   </section>
 
-  <!-- ══ 3. services ═════════════════════════════════════════════════ -->
-  <section class="band services" id="services" aria-labelledby="services-title">
-    <div class="wrap">
-      <p class="eyebrow">Services</p>
-      <div class="services__head">
-        <h2 class="display services__title" id="services-title">What we do</h2>
-        <p class="services__aside">
-          Every cut finished with a clean line-up. Kids and seniors welcome.
-        </p>
+  <!-- ============ INTRO ============ -->
+  <section class="section section--ivory intro" aria-labelledby="introTitle">
+    <div class="shell intro__grid">
+      <div class="intro__head">
+        <p class="eyebrow" data-reveal>The shop</p>
+        <h2 class="h-display" id="introTitle" data-reveal data-reveal-delay="1">More than a haircut. A sharper version of you.</h2>
+      </div>
+      <div class="intro__body" data-reveal data-reveal-delay="2">
+        <p>Imperial Barbers is a barber shop in the proper sense: sharp, considered cuts, beard work that actually suits your face, and grooming finished with care rather than speed. Every cut starts with a conversation about what you want and what will still hold its shape three weeks from now.</p>
+        <p>The room is modern, open and easy to sit in. Come in for a fade on your lunch break, bring the kids on a Saturday, or take your time over the full groom. However long you are here, you leave looking like a sharper version of yourself.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ SERVICES ============ -->
+  <section class="section services" id="services" aria-labelledby="servicesTitle">
+    <div class="shell">
+      <div class="section__head">
+        <p class="eyebrow eyebrow--onDark" data-reveal>Services</p>
+        <h2 class="h-display h-display--onDark" id="servicesTitle" data-reveal data-reveal-delay="1">Cuts, colour and grooming.</h2>
+        <p class="section__note" data-reveal data-reveal-delay="2">Everything on this board can be booked online, or walked in for.</p>
       </div>
 
-      <ul class="list">
-        <li class="list__row rise"><span class="list__name">Fade cut</span><span class="list__note">Skin, low, mid or high — tell us where you want the line.</span></li>
-        <li class="list__row rise"><span class="list__name">Buzz cut</span><span class="list__note">One guard all over. In and out.</span></li>
-        <li class="list__row rise"><span class="list__name">Scissor cut</span><span class="list__note">Length kept, shape cleaned up.</span></li>
-        <li class="list__row rise"><span class="list__name">Razor cut</span><span class="list__note">Texture taken through the ends.</span></li>
-        <li class="list__row rise"><span class="list__name">Beard trim</span><span class="list__note">Shaped, lined up and edged.</span></li>
-        <li class="list__row rise"><span class="list__name">Straight razor shave</span><span class="list__note">Traditional blade, done slow.</span></li>
-        <li class="list__row rise"><span class="list__name">Shave</span><span class="list__note">Full face shave, tidy finish.</span></li>
-        <li class="list__row rise"><span class="list__name">Head shave</span><span class="list__note">Clean down to the skin.</span></li>
-        <li class="list__row rise"><span class="list__name">Hair colouring</span><span class="list__note">Full colour or grey blending.</span></li>
-        <li class="list__row rise"><span class="list__name">Eyebrow tinting</span><span class="list__note">Shaped and tinted.</span></li>
-        <li class="list__row rise"><span class="list__name">Children's cuts</span><span class="list__note">Any day. No fuss, no waiting around.</span></li>
+      <ul class="board" data-reveal data-reveal-delay="3">
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Hair colouring</span>
+          <span class="board__desc">Full colour, or greys blended in</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Beard dyeing</span>
+          <span class="board__desc">Even colour, matched to your hair</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Beard trim</span>
+          <span class="board__desc">Shaped and lined to suit your face</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Curly hair</span>
+          <span class="board__desc">Shaped to your curl pattern</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Fade cut</span>
+          <span class="board__desc">Skin, low, mid or high, blended clean</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Groom packages</span>
+          <span class="board__desc">Cut and beard together, start to finish</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Hot towel shave</span>
+          <span class="board__desc">Steamed, lathered, shaved the old way</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Children&rsquo;s cuts</span>
+          <span class="board__desc">Patient chairs for the little ones</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Long haircut</span>
+          <span class="board__desc">Length kept, weight and shape reworked</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Razor cut</span>
+          <span class="board__desc">Crisp lines, finished with a blade</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Scissor cut</span>
+          <span class="board__desc">Cut by hand for a softer, natural shape</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Shampoo &amp; conditioning</span>
+          <span class="board__desc">A proper wash, before or after</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Shave</span>
+          <span class="board__desc">A straight, close shave, no fuss</span>
+          <span class="board__cue">Book</span></a></li>
+
+        <li class="board__row"><a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">
+          <span class="board__name">Waxing</span>
+          <span class="board__desc">Ears and nose, quickly tidied</span>
+          <span class="board__cue">Book</span></a></li>
       </ul>
     </div>
   </section>
 
-  <!-- ══ 4. reviews ══════════════════════════════════════════════════ -->
-  <section class="reviews" id="reviews" aria-labelledby="reviews-title">
-    <div class="wrap">
-      <p class="eyebrow">Rated on Google</p>
-      <div class="reviews__gap" aria-hidden="true"></div>
-      <p class="display reviews__score rise" id="reviews-title">5.0</p>
-      <p class="reviews__count rise d1">Out of five · 62 reviews</p>
-      <a class="reviews__link rise d2" href="https://www.google.com/maps/search/?api=1&amp;query=Crispy+Cut+18+Saint+George+Street+Papatoetoe+Auckland" target="_blank" rel="noopener">Read them on Google</a>
-    </div>
-  </section>
+  <!-- ============ THE SHOP ============ -->
+  <section class="section section--ivory shop" id="shop" aria-labelledby="shopTitle">
+    <div class="shell shop__grid">
+      <figure class="shop__figure" data-reveal>
+        <img src="images/shop-mirrors.jpg" alt="A row of black leather barber chairs facing lit timber mirror stations at Imperial Barbers" width="680" height="510" loading="lazy" decoding="async">
+      </figure>
 
-  <!-- ══ 5. find us ══════════════════════════════════════════════════ -->
-  <section class="band find" id="find" aria-labelledby="find-title">
-    <div class="wrap">
-      <p class="eyebrow">Find us</p>
-      <div class="find__grid">
+      <div class="shop__copy">
+        <p class="eyebrow" data-reveal>Inside</p>
+        <h2 class="h-display" id="shopTitle" data-reveal data-reveal-delay="1">Room to sit back.</h2>
+        <p data-reveal data-reveal-delay="2">The shop is wide, bright and unhurried&mdash;a full row of chairs down a mirrored wall, so nobody is working on top of anybody. It is a modern space with an old-fashioned welcome: come on your own, bring a mate, bring the whole family.</p>
+        <p data-reveal data-reveal-delay="2">There is a full-size pool table by the window, so waiting never really feels like waiting. Book your slot online, or walk in and rack up while your barber finishes the chair in front of you.</p>
 
-        <div>
-          <h2 class="display find__title" id="find-title">18 St George St</h2>
-          <address class="find__addr">
-            18 Saint George Street<br>
-            Papatoetoe, Auckland 2025<br>
-            <a href="tel:+64212861854">021 286 1854</a>
-          </address>
-          <div class="hero__actions">
-            <a class="btn btn--solid" href="https://www.google.com/maps/search/?api=1&amp;query=Crispy+Cut+18+Saint+George+Street+Papatoetoe+Auckland" target="_blank" rel="noopener">Open in Maps</a>
-            <a class="btn btn--ghost" href="https://www.tiktok.com/@crispy.cut2" target="_blank" rel="noopener">TikTok</a>
-          </div>
-        </div>
-
-        <div>
-          <dl class="hours" id="hours">
-            <div class="hours__row" data-day="1"><dt>Mon</dt><dd>9 am – 6 pm</dd></div>
-            <div class="hours__row" data-day="2"><dt>Tue</dt><dd>9 am – 6 pm</dd></div>
-            <div class="hours__row" data-day="3"><dt>Wed</dt><dd>9 am – 6 pm</dd></div>
-            <div class="hours__row" data-day="4"><dt>Thu</dt><dd>9 am – 7 pm</dd></div>
-            <div class="hours__row" data-day="5"><dt>Fri</dt><dd>9 am – 7 pm</dd></div>
-            <div class="hours__row" data-day="6"><dt>Sat</dt><dd>8:30 am – 6 pm</dd></div>
-            <div class="hours__row" data-day="0"><dt>Sun</dt><dd>9 am – 6 pm</dd></div>
-          </dl>
-          <p class="hours__note">Open seven days. Late nights Thursday and Friday.</p>
-        </div>
-
+        <ul class="marks" data-reveal data-reveal-delay="3">
+          <li>Walk-ins welcome</li>
+          <li>Book online</li>
+          <li>All ages</li>
+          <li>All hair types</li>
+          <li>Pool table</li>
+        </ul>
       </div>
     </div>
   </section>
+
+  <!-- ============ QUOTE ============ -->
+  <section class="quote" aria-label="Our standard">
+    <span class="quote__glow" aria-hidden="true"></span>
+    <div class="shell quote__inner">
+      <p class="quote__lead" data-reveal>&ldquo;Sharp work, warm welcome, no shortcuts.&rdquo;</p>
+      <p class="quote__tail" data-reveal data-reveal-delay="1">That&rsquo;s the Imperial standard.</p>
+    </div>
+  </section>
+
+  <!-- ============ GALLERY ============ -->
+  <section class="section gallery" id="gallery" aria-labelledby="galleryTitle">
+    <div class="shell">
+      <div class="section__head section__head--split">
+        <div>
+          <p class="eyebrow eyebrow--onDark" data-reveal>Gallery</p>
+          <h2 class="h-display h-display--onDark" id="galleryTitle" data-reveal data-reveal-delay="1">The room you&rsquo;ll be sitting in.</h2>
+        </div>
+        <a class="link-arrow" href="https://www.instagram.com/imperialbarbersnz/" target="_blank" rel="noopener" data-reveal data-reveal-delay="2">
+          See more on Instagram
+          <svg viewBox="0 0 24 24" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </a>
+      </div>
+
+      <div class="frames" data-reveal data-reveal-delay="2">
+        <div class="frames__row">
+          <figure class="frame" style="--ar:1.776">
+            <img src="images/shop-wide.jpg" alt="A barber cutting a customer's hair at Imperial Barbers, with the pool table and mirror stations behind" width="680" height="383" loading="lazy" decoding="async">
+          </figure>
+          <figure class="frame" style="--ar:0.749">
+            <img src="images/shop-reception.jpg" alt="The reception counter at Imperial Barbers, in timber and dark stone under a rope pendant light" width="382" height="510" loading="lazy" decoding="async">
+          </figure>
+        </div>
+
+        <div class="frames__row">
+          <figure class="frame" style="--ar:0.749">
+            <img src="images/shop-chairs.jpg" alt="Classic black barber chairs lined up on the shop floor, with a fresh striped cape over the armrest" width="382" height="510" loading="lazy" decoding="async">
+          </figure>
+          <figure class="frame" style="--ar:1.333">
+            <img src="images/shop-mirrors.jpg" alt="Barber chairs beside lit timber mirror stations, with daylight coming through the shopfront windows" width="680" height="510" loading="lazy" decoding="async">
+          </figure>
+          <figure class="frame" style="--ar:1.780">
+            <img src="images/shop-interior.jpg" alt="Wide view of the Imperial Barbers floor, showing the pool table, mirror stations and wall-mounted screens" width="680" height="382" loading="lazy" decoding="async">
+          </figure>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ============ VISIT ============ -->
+  <section class="section section--ivory visit" id="visit" aria-labelledby="visitTitle">
+    <div class="shell visit__grid">
+      <div class="visit__copy">
+        <p class="eyebrow" data-reveal>Visit</p>
+        <h2 class="h-display" id="visitTitle" data-reveal data-reveal-delay="1">Find us on Great South Road.</h2>
+        <p class="visit__note" data-reveal data-reveal-delay="2">Walk-ins are always welcome. Book online any time, or call the shop and we will sort you a chair.</p>
+
+        <dl class="plate" data-reveal data-reveal-delay="2">
+          <div class="plate__row">
+            <dt>Address</dt>
+            <dd><a href="https://www.google.com/maps/dir/?api=1&amp;destination=264+Great+South+Road%2C+Papatoetoe%2C+Auckland+2025%2C+New+Zealand" target="_blank" rel="noopener">264 Great South Road, Papatoetoe, Auckland 2025</a></dd>
+          </div>
+          <div class="plate__row">
+            <dt>Phone</dt>
+            <dd><a href="tel:+64222444473">022 244 4473</a></dd>
+          </div>
+          <div class="plate__row">
+            <dt>Email</dt>
+            <dd><a href="mailto:imperialstylesnz@gmail.com">imperialstylesnz@gmail.com</a></dd>
+          </div>
+          <div class="plate__row">
+            <dt>Instagram</dt>
+            <dd><a href="https://www.instagram.com/imperialbarbersnz/" target="_blank" rel="noopener">@imperialbarbersnz</a></dd>
+          </div>
+        </dl>
+
+        <div class="visit__actions" data-reveal data-reveal-delay="3">
+          <a class="btn btn--brass" href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Your Chair</a>
+          <a class="btn btn--outline" href="https://www.google.com/maps/dir/?api=1&amp;destination=264+Great+South+Road%2C+Papatoetoe%2C+Auckland+2025%2C+New+Zealand" target="_blank" rel="noopener">Get Directions</a>
+        </div>
+      </div>
+
+      <div class="visit__aside">
+        <figure class="visit__figure" data-reveal data-reveal-delay="2">
+          <img src="images/shop-reception.jpg" alt="The welcome desk at Imperial Barbers, with seating for anyone waiting" width="382" height="510" loading="lazy" decoding="async">
+        </figure>
+
+        <section class="hours" aria-labelledby="hoursTitle" data-reveal data-reveal-delay="3">
+          <h3 class="hours__title" id="hoursTitle">Opening hours</h3>
+          <dl class="hours__list" id="hoursList">
+            <div class="hours__row" data-day="Monday"><dt>Monday</dt><dd>9am &ndash; 7pm</dd></div>
+            <div class="hours__row" data-day="Tuesday"><dt>Tuesday</dt><dd>9am &ndash; 7pm</dd></div>
+            <div class="hours__row" data-day="Wednesday"><dt>Wednesday</dt><dd>9am &ndash; 7pm</dd></div>
+            <div class="hours__row" data-day="Thursday"><dt>Thursday</dt><dd>9am &ndash; 7pm</dd></div>
+            <div class="hours__row" data-day="Friday"><dt>Friday</dt><dd>9am &ndash; 7pm</dd></div>
+            <div class="hours__row" data-day="Saturday"><dt>Saturday</dt><dd>9am &ndash; 6pm</dd></div>
+            <div class="hours__row" data-day="Sunday"><dt>Sunday</dt><dd>9am &ndash; 6pm</dd></div>
+          </dl>
+        </section>
+      </div>
+    </div>
+  </section>
+
 </main>
 
-<footer class="foot">
-  <div class="wrap foot__inner">
-    <span>Crispy Cut · Barbershop · Papatoetoe</span>
-    <span><a href="tel:+64212861854">021 286 1854</a></span>
+<!-- ============ FOOTER ============ -->
+<footer class="site-footer">
+  <div class="shell footer__inner">
+    <div class="footer__brand">
+      <img class="footer__mark" src="images/logo-mark.png" alt="Imperial Barbers" width="320" height="320" loading="lazy" decoding="async">
+      <p class="footer__tag">Style on us</p>
+    </div>
+
+    <nav class="footer__nav" aria-label="Footer">
+      <a href="#services">Services</a>
+      <a href="#shop">The Shop</a>
+      <a href="#gallery">Gallery</a>
+      <a href="#visit">Visit</a>
+      <a href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Now</a>
+    </nav>
+
+    <div class="footer__contact">
+      <p>264 Great South Road, Papatoetoe, Auckland 2025</p>
+      <p><a href="tel:+64222444473">022 244 4473</a> &middot; <a href="mailto:imperialstylesnz@gmail.com">imperialstylesnz@gmail.com</a></p>
+      <p class="footer__hours">Open 7 days &middot; Mon&ndash;Fri 9am&ndash;7pm &middot; Sat&ndash;Sun 9am&ndash;6pm</p>
+      <a class="link-arrow link-arrow--sm" href="https://www.instagram.com/imperialbarbersnz/" target="_blank" rel="noopener">
+        <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.5" aria-hidden="true"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.2" cy="6.8" r="1.1" fill="currentColor" stroke="none"/></svg>
+        @imperialbarbersnz
+      </a>
+    </div>
+  </div>
+
+  <div class="shell footer__base">
+    <p>&copy; <span id="year">2026</span> Imperial Barbers. All rights reserved.</p>
+    <p>Papatoetoe, Auckland, New Zealand</p>
   </div>
 </footer>
 
-<a class="callbar" href="tel:+64212861854">Call 021 286 1854</a>
+<!-- ============ MOBILE STICKY CTA ============ -->
+<div class="mobile-cta">
+  <a class="mobile-cta__btn mobile-cta__btn--call" href="tel:+64222444473">
+    <svg viewBox="0 0 24 24" width="17" height="17" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1 1 .4 1.9.7 2.8a2 2 0 0 1-.5 2.1L8.1 9.9a16 16 0 0 0 6 6l1.3-1.2a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.8.7a2 2 0 0 1 1.7 2Z"/></svg>
+    Call
+  </a>
+  <a class="mobile-cta__btn mobile-cta__btn--book" href="https://imperialbarbers.setmore.com" target="_blank" rel="noopener">Book Now</a>
+</div>
 
-<script>
-/* Opening hours, minutes past midnight, indexed Sun=0 … Sat=6.
-   Change these and both the hero line and the table follow. */
-(function () {
-  var HOURS = [
-    { open:  9 * 60,      close: 18 * 60 },  // Sun  9:00 – 18:00
-    { open:  9 * 60,      close: 18 * 60 },  // Mon
-    { open:  9 * 60,      close: 18 * 60 },  // Tue
-    { open:  9 * 60,      close: 18 * 60 },  // Wed
-    { open:  9 * 60,      close: 19 * 60 },  // Thu
-    { open:  9 * 60,      close: 19 * 60 },  // Fri
-    { open:  8 * 60 + 30, close: 18 * 60 }   // Sat  8:30 – 18:00
-  ];
-
-  function clock(mins) {
-    var h = Math.floor(mins / 60), m = mins % 60;
-    var suffix = h < 12 ? 'am' : 'pm';
-    var h12 = h % 12 || 12;
-    return (m ? h12 + ':' + (m < 10 ? '0' + m : m) : '' + h12) + ' ' + suffix;
-  }
-
-  /* Read the wall clock in Papatoetoe, not on the visitor's device. */
-  function aucklandNow() {
-    try {
-      var parts = {};
-      new Intl.DateTimeFormat('en-US', {
-        timeZone: 'Pacific/Auckland',
-        weekday: 'short', hour: '2-digit', minute: '2-digit', hourCycle: 'h23'
-      }).formatToParts(new Date()).forEach(function (p) { parts[p.type] = p.value; });
-
-      var day = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'].indexOf(parts.weekday);
-      if (day < 0) return null;
-      return { day: day, mins: parseInt(parts.hour, 10) * 60 + parseInt(parts.minute, 10) };
-    } catch (e) {
-      return null;
-    }
-  }
-
-  var now = aucklandNow();
-  if (!now) return;   // leave the static fallback text in place
-
-  var today = HOURS[now.day];
-  var slot = document.getElementById('today');
-
-  if (slot) {
-    var open = now.mins >= today.open && now.mins < today.close;
-    var text;
-    if (open) {
-      text = 'Open till ' + clock(today.close);
-    } else if (now.mins < today.open) {
-      text = 'Opens ' + clock(today.open);
-    } else {
-      text = 'Opens ' + clock(HOURS[(now.day + 1) % 7].open) + ' tomorrow';
-    }
-    slot.innerHTML = '<span class="dot' + (open ? '' : ' dot--shut') + '"></span>' + text;
-    slot.setAttribute('aria-label', (open ? 'Open now. ' : 'Closed now. ') + text);
-  }
-
-  var row = document.querySelector('.hours__row[data-day="' + now.day + '"]');
-  if (row) row.classList.add('is-today');
-})();
-
-(function () {
-  var targets = document.querySelectorAll('.rise');
-  if (!('IntersectionObserver' in window) ||
-      window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-    targets.forEach(function (el) { el.classList.add('in'); });
-    return;
-  }
-  var io = new IntersectionObserver(function (entries) {
-    entries.forEach(function (entry) {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('in');
-      io.unobserve(entry.target);
-    });
-  }, { rootMargin: '0px 0px -12% 0px', threshold: 0.1 });
-
-  targets.forEach(function (el, i) {
-    // stagger the service rows so the list reads top-down like a price board
-    if (el.classList.contains('list__row')) {
-      el.style.transitionDelay = (i % 4) * 55 + 'ms';
-    }
-    io.observe(el);
-  });
-})();
-</script>
+<script src="js/main.js"></script>
 </body>
 </html>
